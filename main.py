@@ -4,6 +4,8 @@ from dfs import busca_profundidade
 from bfs import busca_largura
 from bcm import busca_custo_minimo
 from heuristica import heuristica
+from astar import busca_a_estrela
+
 
 def formatar_pessoas(pessoas):
     """Formata um conjunto de pessoas para exibição."""
@@ -149,6 +151,24 @@ def main():
         f"h(estado inicial) = "
         f"{heuristica(estado_teste)}"
     )
+
+    print("\n<--------- BUSCA A* --------->")
+
+    no_objetivo, nos_expandidos = busca_a_estrela()
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
 
 
 if __name__ == "__main__":
