@@ -109,6 +109,11 @@ def main():
 
     exibir_solucao(no_objetivo)
 
+    print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+
 
 if __name__ == "__main__":
     main()
