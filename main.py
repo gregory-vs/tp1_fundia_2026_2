@@ -1,4 +1,5 @@
 from estado import ESTADO_INICIAL, PESSOAS, pessoas_no_final, sucessores
+from dfs import busca_profundidade, reconstruir_caminho
 
 
 def formatar_pessoas(pessoas):
@@ -16,6 +17,42 @@ def exibir_estado(estado):
     print(f"Lado inicial: {formatar_pessoas(pessoas_inicio)}")
     print(f"Lado final:   {formatar_pessoas(pessoas_final)}")
     print(f"Tocha:        lado {lado_tocha}")
+
+
+def exibir_solucao(no_objetivo):
+    """
+    Exibe a sequência de ações encontrada pela busca.
+    """
+
+    caminho = reconstruir_caminho(no_objetivo)
+
+    print("\nCaminho encontrado:")
+
+    for numero, no in enumerate(
+        caminho[1:],
+        start=1
+    ):
+        viajantes, origem, destino = no.acao
+
+        nomes = " e ".join(viajantes)
+
+        print(
+            f"{numero}. "
+            f"{nomes}: "
+            f"{origem} -> {destino} "
+            f"| custo acumulado: "
+            f"{no.custo_acumulado} min"
+        )
+
+    print(
+        f"\nTempo total: "
+        f"{no_objetivo.custo_acumulado} minutos"
+    )
+
+    print(
+        f"Profundidade da solução: "
+        f"{no_objetivo.profundidade}"
+    )
 
 
 def main():
@@ -43,6 +80,26 @@ def main():
         )
 
     print("\nOs algoritmos de busca ainda não foram implementados.")
+
+    no_objetivo, nos_expandidos = (
+        busca_profundidade()
+    )
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+        return
+
+    exibir_solucao(no_objetivo)
+
+    print(
+        f"Nós expandidos: "
+        f"{nos_expandidos}"
+    )
+
 
 
 if __name__ == "__main__":
