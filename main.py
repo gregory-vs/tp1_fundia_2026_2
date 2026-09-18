@@ -1,5 +1,10 @@
 from estado import ESTADO_INICIAL, PESSOAS, pessoas_no_final, sucessores
-from dfs import busca_profundidade, reconstruir_caminho
+from busca import reconstruir_caminho
+from dfs import busca_profundidade
+from bfs import busca_largura
+from bcm import busca_custo_minimo
+from heuristica import heuristica
+from astar import busca_a_estrela
 
 
 def formatar_pessoas(pessoas):
@@ -79,11 +84,11 @@ def main():
             f"| final: [{formatar_pessoas(chegaram)}]"
         )
 
-    print("\nOs algoritmos de busca ainda não foram implementados.")
+    #print("\nOs algoritmos de busca ainda não foram implementados.")
 
-    no_objetivo, nos_expandidos = (
-        busca_profundidade()
-    )
+    print("\n<--------- BUSCA EM PROFUNDIDADE --------->")
+
+    no_objetivo, nos_expandidos = busca_profundidade()
 
     if no_objetivo is None:
         print("\nNenhuma solução encontrada.")
@@ -91,15 +96,79 @@ def main():
             f"Nós expandidos: "
             f"{nos_expandidos}"
         )
-        return
+    else:
+        exibir_solucao(no_objetivo)
 
-    exibir_solucao(no_objetivo)
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
 
-    print(
-        f"Nós expandidos: "
-        f"{nos_expandidos}"
+    print("\n<--------- BUSCA EM LARGURA --------->")
+    no_objetivo, nos_expandidos = busca_largura()
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+        
+    print("\n<--------- BUSCA DE CUSTO MÍNIMO --------->")
+
+    no_objetivo, nos_expandidos = busca_custo_minimo()
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+
+
+    print("\n<--------- TESTE DA HEURÍSTICA --------->")
+
+    estado_teste = (
+        frozenset({"C", "B"}),
+            "final"
     )
 
+    print(
+        f"h(estado inicial) = "
+        f"{heuristica(estado_teste)}"
+    )
+
+    print("\n<--------- BUSCA A* --------->")
+
+    no_objetivo, nos_expandidos = busca_a_estrela()
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
 
 
 if __name__ == "__main__":
