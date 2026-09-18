@@ -2,6 +2,7 @@ from estado import ESTADO_INICIAL, PESSOAS, pessoas_no_final, sucessores
 from busca import reconstruir_caminho
 from dfs import busca_profundidade
 from bfs import busca_largura
+from bcm import busca_custo_minimo
 
 
 def formatar_pessoas(pessoas):
@@ -85,9 +86,7 @@ def main():
 
     print("\n<--------- BUSCA EM PROFUNDIDADE --------->")
 
-    no_objetivo, nos_expandidos = (
-        busca_profundidade()
-    )
+    no_objetivo, nos_expandidos = busca_profundidade()
 
     if no_objetivo is None:
         print("\nNenhuma solução encontrada.")
@@ -95,24 +94,51 @@ def main():
             f"Nós expandidos: "
             f"{nos_expandidos}"
         )
-        return
+    else:
+        exibir_solucao(no_objetivo)
 
-    exibir_solucao(no_objetivo)
-
-    print(
-        f"Nós expandidos: "
-        f"{nos_expandidos}"
-    )
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
 
     print("\n<--------- BUSCA EM LARGURA --------->")
     no_objetivo, nos_expandidos = busca_largura()
 
-    exibir_solucao(no_objetivo)
-
-    print(
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
             f"Nós expandidos: "
             f"{nos_expandidos}"
         )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+        
+    print("\n<--------- BUSCA DE CUSTO MÍNIMO --------->")
+
+    no_objetivo, nos_expandidos = busca_custo_minimo()
+
+    if no_objetivo is None:
+        print("\nNenhuma solução encontrada.")
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+    else:
+        exibir_solucao(no_objetivo)
+
+        print(
+            f"Nós expandidos: "
+            f"{nos_expandidos}"
+        )
+
+
+
 
 
 if __name__ == "__main__":
