@@ -16,8 +16,7 @@ ESTADO_OBJETIVO = (frozenset(), "final")
 
 def eh_objetivo(estado):
     """Retorna True quando todas as pessoas chegaram ao lado final."""
-    pessoas_no_inicio, _ = estado
-    return not pessoas_no_inicio
+    return estado == ESTADO_OBJETIVO
 
 
 def pessoas_no_final(estado):
@@ -33,6 +32,9 @@ def custo_travessia(pessoas):
 
     if not set(pessoas) <= PESSOAS:
         raise ValueError("A travessia contém uma pessoa desconhecida.")
+
+    if len(set(pessoas)) != len(pessoas):
+        raise ValueError("Uma pessoa não pode aparecer duas vezes na travessia.")
 
     return max(TEMPOS[pessoa] for pessoa in pessoas)
 
