@@ -25,3 +25,21 @@ class NoBusca:
     acao: tuple | None = None
     custo_acumulado: int = 0
     profundidade: int = 0
+
+def reconstruir_caminho(no_objetivo):
+    """
+    Reconstrói o caminho entre o estado inicial e o estado objetivo.
+
+    Retorna uma lista de nós, começando pela raiz e terminando
+    no nó objetivo.
+    """
+    caminho = []
+    no_atual = no_objetivo
+
+    while no_atual is not None:
+        caminho.append(no_atual)
+        no_atual = no_atual.pai
+
+    caminho.reverse()
+
+    return caminho

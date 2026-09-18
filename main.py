@@ -1,5 +1,7 @@
 from estado import ESTADO_INICIAL, PESSOAS, pessoas_no_final, sucessores
-from dfs import busca_profundidade, reconstruir_caminho
+from busca import reconstruir_caminho
+from dfs import busca_profundidade
+from bfs import busca_largura
 
 
 def formatar_pessoas(pessoas):
@@ -79,7 +81,9 @@ def main():
             f"| final: [{formatar_pessoas(chegaram)}]"
         )
 
-    print("\nOs algoritmos de busca ainda não foram implementados.")
+    #print("\nOs algoritmos de busca ainda não foram implementados.")
+
+    print("\n<--------- BUSCA EM PROFUNDIDADE --------->")
 
     no_objetivo, nos_expandidos = (
         busca_profundidade()
@@ -100,6 +104,10 @@ def main():
         f"{nos_expandidos}"
     )
 
+    print("\n<--------- BUSCA EM LARGURA --------->")
+    no_objetivo, nos_expandidos = busca_largura()
+
+    exibir_solucao(no_objetivo)
 
 
 if __name__ == "__main__":
