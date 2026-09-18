@@ -3,7 +3,7 @@ from busca import reconstruir_caminho
 from dfs import busca_profundidade
 from bfs import busca_largura
 from bcm import busca_custo_minimo
-
+from heuristica import heuristica
 
 def formatar_pessoas(pessoas):
     """Formata um conjunto de pessoas para exibição."""
@@ -138,7 +138,17 @@ def main():
         )
 
 
+    print("\n<--------- TESTE DA HEURÍSTICA --------->")
 
+    estado_teste = (
+        frozenset({"C", "B"}),
+            "final"
+    )
+
+    print(
+        f"h(estado inicial) = "
+        f"{heuristica(estado_teste)}"
+    )
 
 
 if __name__ == "__main__":
